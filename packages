@@ -1,2 +1,7 @@
 npm install --save @types/google-one-tap
 ng add @angular/material
+
+// For CSharp Side
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package Microsoft.AspNetCore.Authorization
+dotnet add package Google.Apis.Auth
