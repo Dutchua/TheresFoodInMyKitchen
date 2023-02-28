@@ -39,7 +39,7 @@ Create Table Rating(
 
 INSERT INTO ingredients(
 	item, allergy, status)
-	VALUES ("chicken", 0, 0),
+	VALUES ("Chicken", 0, 0),
 	       ("Beef", 0, 0),
 	       ("Fish", 0, 0),
 	       ("Pork", 0, 0),
@@ -47,7 +47,7 @@ INSERT INTO ingredients(
 	       ("Cheese", 0, 0),
 	       ("Milk", 0, 0),
 	       ("Flour", 0, 0),
-               ("Bread", 0, 0),
+           ("Bread", 0, 0),
 	       ("Rice", 0, 0),
 	       ("Corn", 0, 0),
 	       ("Pasta", 0, 0),
@@ -55,7 +55,7 @@ INSERT INTO ingredients(
 	       ("Beans", 0, 0),
 	       ("Potatoes", 0, 0),
 	       ("Butter", 0, 0),
-               ("Carrots", 0, 0),
+           ("Carrots", 0, 0),
 	       ("Yogurt", 0, 0),
 	       ("Garlic", 0, 0),
 	       ("Tomatoes", 0, 0),
@@ -63,27 +63,26 @@ INSERT INTO ingredients(
 	       ("Vinegar", 0, 0),
 	       ("Cinnamon", 0, 0),
 	       ("Salt", 0, 0),
-	       ("Nuts", 0, 0),
+	       ("Nuts", 1, 0),
 	       ("Lettuce", 0, 0),
 	       ("Peppers", 0, 0),
 	       ("Broccoli", 0, 0),
 	       ("Cucumber", 0, 0),
 	       ("Avacado", 0, 0),
 	       ("Spinach", 0, 0),
-	       ("Avacado", 0, 0),
 	       ("Cilantro", 0, 0),
-               ("Water", 0, 0),
-               ("Cayenne pepper", 0, 0),
-               ("Coriander", 0, 0),
-               ("Turmeric", 0, 0),
-               ("Cumin", 0, 0),
-               ("Curry powder", 0, 0),
-               ("Jalapeño pepper", 0, 0),
-               ("Black pepper", 0, 0),
-               ("Coriander", 0, 0),
-               ("Mint", 0, 0),
-               ("Sesame seeds", 0, 0),
-               ("Prawns", 0, 0)
+		   ("Water", 0, 0),
+		   ("Cayenne pepper", 0, 0),
+		   ("Coriander", 0, 0),
+		   ("Turmeric", 0, 0),
+		   ("Cumin", 0, 0),
+		   ("Curry powder", 0, 0),
+		   ("Jalapeño pepper", 0, 0),
+		   ("Black pepper", 0, 0),
+		   ("Coriander", 0, 0),
+		   ("Mint", 0, 0),
+		   ("Sesame seeds", 0, 0),
+		   ("Prawns", 1, 0)
 
 	       
 ;
@@ -174,7 +173,16 @@ Flip frittata onto a large plate, then invert onto a serving platter.","Spanish"
 
 INSERT INTO rating(
 	 recipeid, rating)
-	VALUES ( 1, 4);
+	VALUES ( 1, 4),
+	       ( 2, 3),
+		   ( 3, 2),
+		   ( 4, 1),
+		   ( 5, 5),
+		   ( 6, 4),
+		   ( 7, 3),
+		   ( 8, 2),
+		   ( 9, 3),
+		   ( 10, 4);
 
 
 INSERT INTO recipeingredients(
