@@ -1,13 +1,12 @@
-<section>
-    <img alt={{getNameOfPicture()}} src={{getPictureLink()}}>
-</section>
 
-<section>
+
+<section class="mealDescription">
     <h1 class="mealtitle">Meal Title : {{getTitle()}}</h1>
     <h2 class="cuisin">Cuisine : {{getCuisine()}}</h2>
-        
-      <p class="leading-relaxed">{{getMealDescription()}}</p>
+    
+    <img src="burgerpic.jpg" alt={{getNameOfPicture()}} >
+      <p class="Description">{{getMealDescription()}}</p>
 
-      <button class="rate-thumbs-up"></button>
-      <button class="rate-thumbs-down"></button>
+      <button class="buttonUp">Thumbs Up</button>
+      <button class="buttonDown">Thumbs Down</button>
 </section>
