@@ -22,7 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     RouterModule.forRoot([
       {path: '', component: LoginComponent, pathMatch: 'full'},
-      {path: 'loggedIn', component: LogoutComponent}
+      {path: 'logout', component: LogoutComponent}
     ])
   ],
   providers: [],
