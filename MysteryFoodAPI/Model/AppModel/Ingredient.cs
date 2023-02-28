@@ -1,4 +1,4 @@
-namespace MysteryFoodApi.Models.AppModel
+namespace MysteryFoodApi.Model.AppModel
 {
   class Ingredients
   {
