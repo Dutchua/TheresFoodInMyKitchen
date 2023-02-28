@@ -9,6 +9,11 @@ namespace MysteryFoodApi.Model.AppModel
     public int rating { get; set; }
     public int status { get; set; }
 
+    public Rating(int rating)
+    {
+      this.ratingId = ratingId;
+    }
+    
     public Rating (int ratingId, int recipeId, int rating, int status)
     {
       this.ratingId = ratingId;
