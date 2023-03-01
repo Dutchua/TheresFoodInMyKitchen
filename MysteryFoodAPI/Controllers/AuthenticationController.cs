@@ -53,8 +53,7 @@ namespace MysteryFoodApi.Controllers
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Email), new Claim(ClaimTypes.Name, user.Name),
-                        new Claim(ClaimTypes.Surname, user.Surname)}),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Email)}),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
             };
