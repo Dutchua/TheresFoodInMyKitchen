@@ -19,6 +19,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AngularFireModule } from "@angular/fire/compat";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import { MealDescrptionComponent } from './meal-descrption/meal-descrption.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
     UploadListComponent,
     UploadDetailsComponent,
     HomepageComponent
+    MealDescrptionComponent
   ],
   imports: [
     BrowserModule,

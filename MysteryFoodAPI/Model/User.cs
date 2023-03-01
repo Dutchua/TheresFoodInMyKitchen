@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace MysteryFoodApi.Models
+namespace MysteryFoodApi.Model
 {
     public class User
     {

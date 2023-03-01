@@ -1,4 +1,4 @@
-﻿namespace MysteryFoodApi.Models
+namespace MysteryFoodApi.Model
 {
     public class RefreshToken
     {

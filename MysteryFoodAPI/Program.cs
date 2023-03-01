@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<Settings>(
-    builder.Configuration.GetSection("ApplicationSettings"));
+    builder.Configuration.GetSection("Settings"));
 
 builder.Services.AddAuthentication(x =>
 {

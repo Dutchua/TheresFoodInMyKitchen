@@ -1,5 +1,5 @@
-﻿using Google.Apis.Auth;
-using MysteryFoodApi.Models;
+using Google.Apis.Auth;
+using MysteryFoodApi.Model;
 using MysteryFoodApi.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -9,15 +9,15 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace JWTAppYT.Controllers
+namespace MysteryFoodApi.Controllers
 {
     [Controller]
-    public class AuthController : Controller
+    public class AuthenticationController : Controller
     {
         private static List<User> UserList = new List<User>();
         private readonly Settings settings;
 
-        public AuthController(IOptions<Settings> _applicationSettings)
+        public AuthenticationController(IOptions<Settings> _applicationSettings)
         {
             this.settings = _applicationSettings.Value;
         }
