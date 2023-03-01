@@ -1,0 +1,28 @@
+<div class="login">
+  <div class="login-form">
+    <h1 class="login-heading">Welcome back!</h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Email" formControlName="email" required>
+        <mat-error>
+          Please provide a valid email address
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput type="password" placeholder="Password" formControlName="password" required>
+        <mat-error>
+          Please provide a valid password
+        </mat-error>
+      </mat-form-field>
+
+      <div class="d-grid">
+        <button class="btn btn-primary btn-login fw-bold" type="submit">Sign in</button>
+        <div class="text-center">
+          <p>or</p>
+          <div id="buttonDiv"></div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
