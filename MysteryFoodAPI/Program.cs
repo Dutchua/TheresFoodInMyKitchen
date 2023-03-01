@@ -1,7 +1,5 @@
 using MysteryFoodApi.Utility;
-using MysteryFoodApi.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -33,7 +31,7 @@ builder.Services.AddAuthentication(x =>
     x.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["ApplicationSettings:Secret"])),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["Settings:Secret"])),
         ValidateIssuer = false,
         ValidateAudience = false
     };
@@ -45,20 +43,13 @@ builder.Services.AddAuthentication(x =>
             return Task.CompletedTask;
         }
     };
-
 });
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin", "HR").RequireClaim("id", "Israel"));
     options.AddPolicy("ExclusiveContentPolicy",
-        policy => policy.RequireAssertion(context => context.User.HasClaim(claim => claim.Type == "id" && claim.Value == "Israel") ||
-        context.User.IsInRole("SuperAdmin")));
-
-    options.AddPolicy("IsOldEnoughWithRole", policy => policy.AddRequirements(new OldEnoughRequirements(21)));
+        policy => policy.RequireAssertion(context => context.User.HasClaim(claim => claim.Type == "id" && claim.Value == "Israel")));
 });
-
-builder.Services.AddSingleton<IAuthorizationHandler, OldEnoughHandler>();
 
 builder.Services.AddCors(opt =>
 {

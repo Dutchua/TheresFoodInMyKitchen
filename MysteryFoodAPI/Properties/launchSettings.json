@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "JWTAppYT": {
+    "MysteryFoods": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
