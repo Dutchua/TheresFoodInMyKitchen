@@ -10,13 +10,18 @@ import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { MealDescrptionComponent } from './meal-descrption/meal-descrption.component';
 import {RegisterComponent} from "./register/register.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import { HomepageComponent } from './homepage/homepage.component';
+import {HomepageService}  from "./homepage.service";
 
 @NgModule({
   declarations: [
     AppComponent,
+    RegisterComponent,
     LoginComponent,
     LogoutComponent,
-    MealDescrptionComponent
+    MealDescrptionComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -24,13 +29,17 @@ import {RegisterComponent} from "./register/register.component";
     MaterialModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: AppComponent, pathMatch: 'full'},
-      {path: 'login', component: LoginComponent},
+      // {path: '', redirectTo: "login", pathMatch: 'full'},
+      // {path: 'login', component: LoginComponent},
+      {path: '', redirectTo: "homepage", pathMatch: 'full'},
+      {path: 'homepage', component: HomepageComponent},
+      {path: 'mealdescription', component: MealDescrptionComponent},
       {path: 'register', component: RegisterComponent},
       {path: 'logout', component: LogoutComponent}
     ]),
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [HomepageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
