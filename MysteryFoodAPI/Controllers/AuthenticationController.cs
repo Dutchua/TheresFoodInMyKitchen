@@ -141,7 +141,7 @@ namespace MysteryFoodApi.Controllers
 
             var payload = await GoogleJsonWebSignature.ValidateAsync(credential, settings);
 
-            var user = UserList.Where(x => x.Name == payload.Name).FirstOrDefault();
+            var user = UserList.Where(x => x.Email == payload.Email).FirstOrDefault();
 
             if (user != null)
             {
