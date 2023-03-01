@@ -79,5 +79,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+DatabaseConnection.Connect();
 app.Run();
+DatabaseConnection.Disconnect();
