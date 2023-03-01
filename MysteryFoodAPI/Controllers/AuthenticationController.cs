@@ -15,18 +15,18 @@ namespace MysteryFoodApi.Controllers
     public class AuthenticationController : Controller
     {
         private static List<User> UserList = new List<User>();
-        private readonly Settings settings;
+        private readonly Settings _applicationSettings;
 
         public AuthenticationController(IOptions<Settings> _applicationSettings)
         {
-            this.settings = _applicationSettings.Value;
+            this._applicationSettings = _applicationSettings.Value;
         }
 
 
         [HttpPost("Login")]
         public IActionResult Login([FromBody] Login model)
         {
-            var user = UserList.Where(x => x.UserName == model.UserName).FirstOrDefault();
+            var user = UserList.Where(x => x.Email == model.Email).FirstOrDefault();
 
             if (user == null)
             {
@@ -49,12 +49,12 @@ namespace MysteryFoodApi.Controllers
         public dynamic JWTGenerator(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(this.settings.Secret);
+            var key = Encoding.ASCII.GetBytes(this._applicationSettings.Secret);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.UserName), new Claim(ClaimTypes.Role, user.Role),
-                        new Claim(ClaimTypes.DateOfBirth, user.BirthDay)}),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Email), new Claim(ClaimTypes.Name, user.Name),
+                        new Claim(ClaimTypes.Surname, user.Surname)}),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
             };
@@ -67,9 +67,9 @@ namespace MysteryFoodApi.Controllers
 
             SetRefreshToken(refreshToken, user);
 
-            return new { token = encrypterToken, username = user.UserName };
+            return new { token = encrypterToken, name = user.Name };
         }
-
+        
         private RefreshToken GenerateRefreshToken()
         {
             var refreshToken = new RefreshToken()
@@ -82,7 +82,7 @@ namespace MysteryFoodApi.Controllers
             return refreshToken;
 
         }
-
+        
         [HttpGet("RefreshToken")]
         public async Task<ActionResult<string>> RefreshToken()
         {
@@ -104,18 +104,18 @@ namespace MysteryFoodApi.Controllers
         {
 
             HttpContext.Response.Cookies.Append("X-Refresh-Token", refreshToken.Token,
-                 new CookieOptions
-                 {
-                     Expires = refreshToken.Expires,
-                     HttpOnly = true,
-                     Secure = true,
-                     IsEssential = true,
-                     SameSite = SameSiteMode.None
-                 });
+                new CookieOptions
+                {
+                    Expires = refreshToken.Expires,
+                    HttpOnly = true,
+                    Secure = true,
+                    IsEssential = true,
+                    SameSite = SameSiteMode.None
+                });
 
-            UserList.Where(x => x.UserName == user.UserName).First().Token = refreshToken.Token;
-            UserList.Where(x => x.UserName == user.UserName).First().TokenCreated = refreshToken.Created;
-            UserList.Where(x => x.UserName == user.UserName).First().TokenExpires = refreshToken.Expires;
+            UserList.Where(x => x.Email == user.Email).First().Token = refreshToken.Token;
+            UserList.Where(x => x.Email == user.Email).First().TokenCreated = refreshToken.Created;
+            UserList.Where(x => x.Email == user.Email).First().TokenExpires = refreshToken.Expires;
         }
 
         public void SetJWT(string encrypterToken)
@@ -132,26 +132,17 @@ namespace MysteryFoodApi.Controllers
                   });
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> RevokeToken(string username)
-        {
-            UserList.Where(x => x.UserName == username).Select(x => x.Token = String.Empty);
-
-            return Ok();
-        }
-
-
         [HttpPost("LoginWithGoogle")]
         public async Task<IActionResult> LoginWithGoogle([FromBody] string credential)
         {
             var settings = new GoogleJsonWebSignature.ValidationSettings()
             {
-                Audience = new List<string> { this.settings.GoogleClientId }
+                Audience = new List<string> { this._applicationSettings.GoogleClientId }
             };
 
             var payload = await GoogleJsonWebSignature.ValidateAsync(credential, settings);
 
-            var user = UserList.Where(x => x.UserName == payload.Name).FirstOrDefault();
+            var user = UserList.Where(x => x.Name == payload.Name).FirstOrDefault();
 
             if (user != null)
             {
@@ -179,19 +170,13 @@ namespace MysteryFoodApi.Controllers
         [HttpPost("Register")]
         public IActionResult Register([FromBody] Register model)
         {
-            var user = new User { UserName = model.UserName, Role = model.Role, BirthDay = model.BirthDay };
+            var user = new User { Name = model.Name, Surname = model.Surname, Email = model.Email};
 
-            if (model.ConfirmPassword == model.Password)
+
+            using (HMACSHA512? hmac = new HMACSHA512())
             {
-                using (HMACSHA512? hmac = new HMACSHA512())
-                {
-                    user.PasswordSalt = hmac.Key;
-                    user.PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(model.Password));
-                }
-            }
-            else
-            {
-                return BadRequest("Passwords Dont Match");
+                user.PasswordSalt = hmac.Key;
+                user.PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(model.Password));
             }
 
             UserList.Add(user);
