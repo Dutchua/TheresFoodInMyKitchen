@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       (x:any) => {
         localStorage.setItem("token", x.token);
         this._ngZone.run(() => {
-          this.router.navigate(['/logout']);
+          this.router.navigate(['/']);
         })},
       (error:any) => {
         console.log(error);
