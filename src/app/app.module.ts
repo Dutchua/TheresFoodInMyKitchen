@@ -9,6 +9,7 @@ import {MaterialModule} from "./material/material.module";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { MealDescrptionComponent } from './meal-descrption/meal-descrption.component';
+import {RegisterComponent} from "./register/register.component";
 
 @NgModule({
   declarations: [
@@ -23,9 +24,11 @@ import { MealDescrptionComponent } from './meal-descrption/meal-descrption.compo
     MaterialModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: LoginComponent, pathMatch: 'full'},
+      {path: '', component: AppComponent, pathMatch: 'full'},
+      {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
       {path: 'logout', component: LogoutComponent}
-    ])
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent]
