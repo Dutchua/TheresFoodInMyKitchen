@@ -1,22 +1,22 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {MealRoutingModule} from './meal-routing.module';
-import {mealComponent} from "./meal.component";
-import { HttpClientModule} from "@angular/common/http";
+import {MealComponent} from "./meal.component";
+import {HttpClientModule} from "@angular/common/http";
+import {AppRoutingModule} from "../app-routing/app-routing.module";
 
 @NgModule({
   declarations: [
 
-    mealComponent
+    MealComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    MealRoutingModule
+    AppRoutingModule
   ],
 
   exports: [
-    mealComponent
+    MealComponent
   ]
 })
 export class MealModule { }

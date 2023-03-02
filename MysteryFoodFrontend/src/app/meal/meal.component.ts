@@ -8,7 +8,7 @@ import {Meal} from "../model/Meals";
   styleUrls: ['./meal.component.css']
 })
 
-export class mealComponent implements OnInit {
+export class MealComponent implements OnInit {
 
   meals: Meal[] | undefined ;
 
