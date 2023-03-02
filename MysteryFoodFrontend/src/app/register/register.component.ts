@@ -32,23 +32,19 @@ export class RegisterComponent implements OnInit {
 
   async onSubmit() {
     if (this.registerForm.valid) {
-      try {
-        this.service.register(this.registerForm.value).subscribe((x: any) => {
-            this.router.navigate(['/']);
-          },
-          (error: any) => {
+      this.service.register(this.registerForm.value)
+        .subscribe({
+          next : (x: any) => {this.router.navigate(['/']);},
+          error: (error: any) => {
             console.error(error);
-            this._snackBar.open("An error occurred while creating your account", "Close", {
-              duration: 5000
-            });
-          });
-      } catch (err) {
-        this._snackBar.open("An error occurred while creating your account", "Close", {
-          duration: 5000
-        });
-      }
-    } else {
+            this._snackBar.open(
+            "An error occurred while creating your account",
+            "Close",
+            {duration: 5000}
+            );
+          }
+        }
+      );
     }
   }
-
 }
