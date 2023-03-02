@@ -1,12 +1,8 @@
 export interface Meal{
-
-    mealID: number;
-    imageUrl: string;
-    cuisine : string;
-    description: string;
-    instructions: string;
-    rating: boolean;
-
-
-
+  recipeId: number;
+  description: string;
+  instruction: string;
+  cuisineId : number;
+  imageUrl: string;
+  status: boolean;
 }

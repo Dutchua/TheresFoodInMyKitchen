@@ -10,22 +10,20 @@ import {Meal} from "../model/Meals";
 
 export class MealComponent implements OnInit {
 
-  meals: Meal[] | undefined ;
-
+  meals: Meal[] = [];
 
   constructor(private mealService : MealService) {
   }
 
   ngOnInit(): void {
     this.getMeals();
-    console.log(this.meals);
   }
 
   getMeals():void {
     this.mealService.getMeals().subscribe(
-      value => {
-        this.meals = value;
-      })
+      meals => {
+        this.meals = meals;
+      });
   }
 
   getTitle() {

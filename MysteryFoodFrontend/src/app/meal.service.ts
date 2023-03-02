@@ -16,8 +16,8 @@ export class MealService {
 
 
     getMeals(): Observable<Meal[]> {
-    let options = {};
-      return this.http.get<Meal[]>(this.endPoint,options);
+    // let options = {};
+    return this.http.get<Meal[]>(this.endPoint);
     }
 
    getMeal(id: number) {
