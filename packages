@@ -5,3 +5,4 @@ ng add @angular/material
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 dotnet add package Microsoft.AspNetCore.Authorization
 dotnet add package Google.Apis.Auth (Make sure to use version 1.60.0+)
+
