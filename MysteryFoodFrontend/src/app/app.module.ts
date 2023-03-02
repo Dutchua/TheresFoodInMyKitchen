@@ -10,12 +10,14 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RegisterComponent} from './register/register.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {MealModule} from "./meal/meal.module";
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
