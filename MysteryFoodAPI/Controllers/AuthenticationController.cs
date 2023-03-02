@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using MysteryFoodApi.CRUD;
 
 namespace MysteryFoodApi.Controllers
 {
@@ -26,6 +27,7 @@ namespace MysteryFoodApi.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] Login model)
         {
+            UserList = UserQuery.SelectAll();
             var user = UserList.Where(x => x.Email == model.Email).FirstOrDefault();
 
             if (user == null)
@@ -141,7 +143,7 @@ namespace MysteryFoodApi.Controllers
 
             var payload = await GoogleJsonWebSignature.ValidateAsync(credential, settings);
 
-            var user = UserList.Where(x => x.Email == payload.Email).FirstOrDefault();
+            User user = UserList.Where(x => x.Email == payload.Email).FirstOrDefault();
 
             if (user != null)
             {
@@ -178,7 +180,7 @@ namespace MysteryFoodApi.Controllers
                 user.PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(model.Password));
             }
 
-            UserList.Add(user);
+            UserQuery.Insert(user);
 
             return Ok(user);
         }
