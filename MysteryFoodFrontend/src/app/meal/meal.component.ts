@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { MealService} from "../meal.service";
 import {Meal} from "../model/Meals";
+import {ActivatedRoute} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-meal',
@@ -10,39 +12,35 @@ import {Meal} from "../model/Meals";
 
 export class MealComponent implements OnInit {
 
-  meals: Meal[] = [];
+  meal: Meal | undefined;
 
-  constructor(private mealService : MealService) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private mealService : MealService,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
-    this.getMeals();
+    this.getMeal();
   }
 
-  getMeals():void {
-    this.mealService.getMeals().subscribe(
-      meals => {
-        this.meals = meals;
+  getMeal():void {
+    const cuisineId = Number(this.route.snapshot.paramMap.get("cuisineId"));
+    this.mealService.getMeal(cuisineId).subscribe(
+      meal => {
+        this.meal = meal;
       });
   }
 
-  getTitle() {
-
+  getDescription() {
+    return this.meal?.description;
   }
 
-  getCuisine() {
-
+  getMealInstruction() {
+    return this.meal?.instruction;
   }
 
-  getNameOfPicture(){
-
-  }
-
-  getMealDescription() {
-
-  }
-
-  ratemeal(number: number) {
-
+  goBack(): void {
+    this.location.back()
   }
 }

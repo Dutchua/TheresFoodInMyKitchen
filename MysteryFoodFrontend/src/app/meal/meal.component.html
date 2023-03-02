@@ -1,20 +1,5 @@
-
-
-<section class="mealDescription">
-  <h1 class="mealtitle">Meal Title : {{getTitle()}}</h1>
-  <h2 class="cuisin">Cuisine : {{getCuisine()}}</h2>
-
-<!--  <img src="burgerpic.jpg" alt={{getNameOfPicture()}} >-->
-  <p class="Description">{{getMealDescription()}}</p>
-
-  <button (click) = "ratemeal(1)" class="buttonUp">Thumbs Up</button>
-  <button (click) = "ratemeal(0)" class="buttonDown">Thumbs Down</button>
-
-  <ul>
-    <li *ngFor="let meal of meals">
-      <h2>{{meal.description}}</h2>
-      <p>{{meal.instruction}}</p>
-    </li>
-  </ul>
-
+<section *ngIf="meal" class="mealDescription">
+  <h1 class="mealTitle">{{getDescription()}}</h1>
+  <h2 class="cuisine">Instructions:</h2>
+  <p class="instructions">{{getMealInstruction()}}</p>
 </section>
