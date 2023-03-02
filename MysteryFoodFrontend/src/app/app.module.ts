@@ -9,6 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RegisterComponent} from './register/register.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
+import {MealModule} from "./meal/meal.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {AppRoutingModule} from "./app-routing/app-routing.module";
     MaterialModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MealModule
   ],
   providers: [],
   bootstrap: [AppComponent]

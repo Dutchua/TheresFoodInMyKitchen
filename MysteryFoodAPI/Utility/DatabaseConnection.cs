@@ -5,7 +5,7 @@ namespace MysteryFoodApi.Utility
   {
     public static NpgsqlConnection Connection;
 
-    public void Connect()
+    public static void Connect()
     {
       try
       {
@@ -18,7 +18,7 @@ namespace MysteryFoodApi.Utility
       }
     }
 
-    public void Disconnect()
+    public static void Disconnect()
     {
       try
       {
