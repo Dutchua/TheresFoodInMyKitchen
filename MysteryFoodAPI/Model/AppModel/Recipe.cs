@@ -41,11 +41,9 @@ namespace MysteryFoodApi.Model.AppModel
       {
         int recipeId = (int)(reader["recipeid"] as int?);
         string description = reader["description"] as string;
-        string instruction = reader["instruction"] as string;
+        string instruction = reader["instructions"] as string;
         int cuisineId = (int)(reader["cuisineId"] as int?);
-        string imageUrl = reader["imageUrl"] as string;
-        int status = (int)(reader["status"] as int?);
-        return new Recipe(recipeId, description, instruction, cuisineId, imageUrl, status);
+        return new Recipe(recipeId, description, instruction, cuisineId, "imageUrl", 0);
       }
       catch (NullReferenceException e)
       {
