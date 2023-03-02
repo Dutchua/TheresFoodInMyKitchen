@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { MealService} from "../meal.service";
+import {Meal} from "../model/Meals";
 
 @Component({
   selector: 'app-meal',
@@ -7,34 +8,43 @@ import { MealService} from "../meal.service";
   styleUrls: ['./meal.component.css']
 })
 
-export class mealComponent {
+export class mealComponent implements OnInit {
 
-  Meals ;
+  meals: Meal[] | undefined ;
 
 
   constructor(private mealService : MealService) {
-    this.Meals = this.mealService.getMeals();
   }
 
-  getNameOfPicture(){
-  return
+  ngOnInit(): void {
+    this.getMeals();
+    console.log(this.meals);
   }
+
+  getMeals():void {
+    this.mealService.getMeals().subscribe(
+      value => {
+        this.meals = value;
+      })
+  }
+
   getTitle() {
-    return ;
 
   }
 
   getCuisine() {
-    return ;
+
+  }
+
+  getNameOfPicture(){
+
   }
 
   getMealDescription() {
-    return ;
 
   }
 
   ratemeal(number: number) {
 
-    return;
   }
 }
