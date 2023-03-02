@@ -1,0 +1,26 @@
+
+.buttonUp{
+
+  font-size: 15px;
+  font-weight: 20;
+  background-color: rgb(30, 216, 13);
+  color: rgb(148, 148, 148);
+  border-radius: 15px 15px;
+
+}
+.buttonDown{
+
+  font-size: 15px;
+  font-weight: 20;
+  background-color: rgb(190, 0, 0);
+  color: rgb(148, 148, 148);
+  border-radius: 15px 15px;
+
+}
+
+.Description{
+  font-size: 20px;
+  font-weight: 30;
+  border: rgb(214,424,786) ;
+
+}

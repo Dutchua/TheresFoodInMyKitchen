@@ -1,0 +1,13 @@
+
+
+<section class="mealDescription">
+  <h1 class="mealtitle">Meal Title : {{getTitle()}}</h1>
+  <h2 class="cuisin">Cuisine : {{getCuisine()}}</h2>
+
+  <img src="burgerpic.jpg" alt={{getNameOfPicture()}} >
+  <p class="Description">{{getMealDescription()}}</p>
+
+  <button (click) = "ratemeal(1)" class="buttonUp">Thumbs Up</button>
+  <button (click) = "ratemeal(0)" class="buttonDown">Thumbs Down</button>
+
+</section>
