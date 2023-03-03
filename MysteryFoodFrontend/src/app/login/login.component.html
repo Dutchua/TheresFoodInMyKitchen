@@ -1,5 +1,5 @@
-<div class="login">
-  <div class="login-form">
+<article class="login">
+  <section class="login-form">
     <h1 class="login-heading">Welcome back!</h1>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -16,13 +16,13 @@
         </mat-error>
       </mat-form-field>
 
-      <div class="d-grid">
+      <section class="d-grid">
         <button class="btn btn-primary btn-login fw-bold" type="submit">Sign in</button>
-        <div class="text-center">
+        <section class="text-center">
           <p>or</p>
           <div id="buttonDiv"></div>
-        </div>
-      </div>
+        </section>
+      </section>
     </form>
-  </div>
-</div>
+  </section>
+</article>

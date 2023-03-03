@@ -53,36 +53,30 @@ export class LoginComponent implements OnInit {
   }
 
   async handleCredentialResponse(response: CredentialResponse) {
-    await this.service.loginWithGoogle(response.credential).subscribe(
-      (x:any) => {
-        localStorage.setItem("token", x.token);
-        this._ngZone.run(() => {
-          this.router.navigate(['/']);
-        })},
-      (error:any) => {
-        console.log(error);
+    this.service.loginWithGoogle(response.credential).subscribe(
+      {
+        next : (x:any) => {
+          localStorage.setItem("token", x.token);
+          this._ngZone.run(() => {this.router.navigate(['/'])});
+        },
+        error : (error:any) => {
+          console.log(error);
+        }
       }
     );
   }
 
   async onSubmit() {
     if (this.loginForm.valid) {
-      try {
-        this.service.login(this.loginForm.value).subscribe((x: Login) => {
-            this.router.navigate(['/']);
-          },
-          (error: any) => {
-            console.error(error);
-            this._snackBar.open("Error with Username or Password", "Close", {
-              duration: 5000
-            });
+      this.service.login(this.loginForm.value).subscribe({
+        next: (x:Login) => {this.router.navigate(['/']);},
+        error: (error: any) => {
+          console.error(error);
+          this._snackBar.open("Error with Username or Password", "Close", {
+            duration: 5000
           });
-      } catch (err) {
-        this._snackBar.open("Error with Username or Password", "Close", {
-          duration: 5000
-        });
-      }
-    } else {
+        }
+      });
     }
   }
 }
